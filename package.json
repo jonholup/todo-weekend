@@ -1,0 +1,26 @@
+{
+  "name": "todo-full-stack",
+  "version": "1.0.0",
+  "description": "Full Stack To Do",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.17.0",
+    "express": "^4.15.0",
+    "pg": "^6.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonholup/todo-weekend.git"
+  },
+  "author": "Jonny Holupchinski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonholup/todo-weekend/issues"
+  },
+  "homepage": "https://github.com/jonholup/todo-weekend#readme"
+}
