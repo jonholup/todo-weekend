@@ -30,7 +30,32 @@ router.get('/', function(req, res){
       });
     }
   });
-});
+}); //end router.get('/')
+
+router.post('/newTask', function(req, res){
+  var newTask = req.body;
+  pool.connect(function(errorConnectingToDatabase, client, done){
+    if(errorConnectingToDatabase) {
+      // There was an error connecting to the database
+      console.log('Error connecting to database: ', errorConnectingToDatabase);
+      res.sendStatus(500);
+    } else {
+      // We connected to the database!!!
+      // Now, we're gonna' git stuff!!!!!
+      client.query('INSERT INTO todo (complete, task) VALUES ($1, $2);',
+      [newTask.complete, newTask.task],
+      function(errorMakingQuery, result){
+        done();
+        if(errorMakingQuery) {
+          console.log('Error making the database query: ', errorMakingQuery);
+          res.sendStatus(500);
+        } else {
+          res.sendStatus(201);
+        }
+      });
+    }
+  });
+}); //end router.post(/newTask)
 
 
 
