@@ -11,6 +11,26 @@ var config = {
 
 var pool = new pg.Pool(config);
 
+router.get('/', function(req, res){
+  // This will be replaced with a SELECT statement to SQL
+  pool.connect(function(errorConnectingToDatabase, client, done){
+    if(errorConnectingToDatabase) {
+      // There was an error connecting to the database
+      console.log('Error connecting to database: ', errorConnectingToDatabase);
+      res.sendStatus(504);
+    } else {
+      client.query('SELECT * FROM "todo";', function(errorMakingQuery, result){
+        done();
+        if(errorMakingQuery) {
+          console.log('Error making the database query: ', errorMakingQuery);
+          res.sendStatus(500);
+        } else {
+          res.send(result.rows);
+        }
+      });
+    }
+  });
+});
 
 
 
