@@ -22,10 +22,25 @@ console.log('client.js here');
             success: function(response){
               console.log(response);
               getTasks();
-              $('#taskData > input').val('');
+              $('#newTaskForm > input').val('');
             }
         });// end ajax POST
       }); // end newTaskForm event listener
+
+// Delete Button //
+      $('#taskData').on('click', '.deleteButton', function(){
+  var idOfTaskToDelete = $(this).parent().parent().data().id;
+  console.log('The id to delete is: ', idOfTaskToDelete);
+  // for waldo, number 48 -> /books/delete/48
+  $.ajax({
+    type: 'DELETE',
+    url: '/tasks/delete/' + idOfTaskToDelete,
+    success: function(response) {
+      console.log(response);
+      getTasks();
+    }
+  }) // end ajax
+}); // end deleteButton click
 
 
   }); //end Document Ready
