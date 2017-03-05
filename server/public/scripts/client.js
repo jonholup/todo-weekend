@@ -1,6 +1,9 @@
 console.log('client.js here');
+
 $(document).ready(function(){ // start document.ready
   console.log('jquery here');
+  var checkboxValues = JSON.parse(localStorage.getItem('checkboxValues')) || {};
+  var $checkboxes = $("#taskData :checkbox");
   getTasks();
 
   /////// Event Listeners ///////
@@ -29,6 +32,10 @@ $(document).ready(function(){ // start document.ready
 
   // Delete Button //
   $('#taskData').on('click', '.deleteButton', function(){
+    var userConfirm = confirm('Are you sure you want to delete?');
+    if (userConfirm == false) {
+      return;
+    } else {
     var idOfTaskToDelete = $(this).parent().parent().data().id;
     console.log('The id to delete is: ', idOfTaskToDelete);
     $.ajax({
@@ -39,15 +46,15 @@ $(document).ready(function(){ // start document.ready
         getTasks();
       }
     }) // end ajax
+  };
   }); // end deleteButton click
 
   // Checkbox Click //
-    /////// if(this is checked- ajax post complete =true)
-    /////// if else(this is not checked - ajax post complete=false)
   $('#taskData').on('click', '.checkbox', function(){
     var idOfTaskToUpdate = $(this).parent().data().id;
+    console.log($(this));
     var updateObject = {
-      complete: $('input').is(':checked'),
+      complete: $(this).is(':checked'),
       id: idOfTaskToUpdate
     };
     console.log(updateObject);
@@ -82,7 +89,12 @@ function getTasks() {
         var currentTask = response[i]; // Loops through tasks - This is an object
         var $newTask = $('<tr>'); // Creating a new row for each task
         $newTask.data('id', currentTask.id);
-        $newTask.append('<input type="checkbox" class="checkbox" data-id="' + currentTask.id + '">');
+        var $newInput = $('<input type="checkbox" class="checkbox" data-id="' + currentTask.id + '">');
+        if (currentTask.complete){
+          console.log('currentTask is true!', currentTask);
+          $newInput.prop('checked', true);
+        }
+        $newTask.append($newInput);
         $newTask.append('<td>'+ currentTask.task + '</td>');
         $newTask.append('<td><button class="deleteButton">Delete</button></td>');
         $('#taskData').append($newTask);

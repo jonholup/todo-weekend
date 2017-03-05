@@ -19,7 +19,7 @@ router.get('/', function(req, res){
       console.log('Error connecting to database: ', errorConnectingToDatabase);
       res.sendStatus(504);
     } else {
-      client.query('SELECT * FROM "todo";', function(errorMakingQuery, result){
+      client.query('SELECT * FROM "todo" ORDER BY "complete";', function(errorMakingQuery, result){
         done();
         if(errorMakingQuery) {
           console.log('Error making the database query: ', errorMakingQuery);
@@ -60,6 +60,8 @@ router.post('/newTask', function(req, res){
 router.put('/update/:id', function(req, res){
   var taskId = req.params.id;
   var taskBody = req.body;
+  console.log('taskId', taskId);
+  console.log('taskBody', taskBody);
   pool.connect(function(errorConnectingToDatabase, client, done){
     if(errorConnectingToDatabase){
       console.log('Error connecting to database: ', errorConnectingToDatabase);

@@ -2,6 +2,12 @@ h1 {
   color: red;
 }
 
+table {
+    border: 3px solid #B52427;
+    background-color: #C2B9C6;
+    color: #444088;
+}
+
 /*input[type=checkbox] {
 	visibility: hidden;
 }
