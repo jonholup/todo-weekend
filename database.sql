@@ -8,4 +8,4 @@ INSERT INTO todo(task, complete)
 VALUES ('Touch toes', false),
 ('Buy an otter', false),
 ('Take out garbage', false),
-('Eat artichoke', false);
+('Eat some food', false);
