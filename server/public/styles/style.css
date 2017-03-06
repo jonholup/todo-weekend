@@ -8,7 +8,25 @@ table {
     color: #444088;
 }
 
-/*input[type=checkbox] {
-	visibility: hidden;
+td {
+    text-align: center; /* center checkbox horizontally */
+    vertical-align: middle; /* center checkbox vertically */
 }
-*/
+
+th {
+  height: 50px;
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+}
+
+.redBackground {
+  background-color: red;
+}
+
+input {
+  text-align: center; /* center checkbox horizontally */
+  vertical-align: middle; /* center checkbox vertically */
+}

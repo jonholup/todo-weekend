@@ -23,7 +23,6 @@ $(document).ready(function(){ // start document.ready
       url: '/tasks/newTask',
       data: newTaskObject,
       success: function(response){
-        console.log(response);
         getTasks();
         $('#newTaskForm > input').val('');
       }
@@ -37,12 +36,10 @@ $(document).ready(function(){ // start document.ready
       return;
     } else {
     var idOfTaskToDelete = $(this).parent().parent().data().id;
-    console.log('The id to delete is: ', idOfTaskToDelete);
     $.ajax({
       type: 'DELETE',
       url: '/tasks/delete/' + idOfTaskToDelete,
       success: function(response) {
-        console.log(response);
         getTasks();
       }
     }) // end ajax
@@ -91,8 +88,8 @@ function getTasks() {
         $newTask.data('id', currentTask.id);
         var $newInput = $('<input type="checkbox" class="checkbox" data-id="' + currentTask.id + '">');
         if (currentTask.complete){
-          console.log('currentTask is true!', currentTask);
           $newInput.prop('checked', true);
+          $newTask.addClass("redBackground");
         }
         $newTask.append($newInput);
         $newTask.append('<td>'+ currentTask.task + '</td>');
