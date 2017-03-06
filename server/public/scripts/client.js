@@ -79,6 +79,7 @@ function getTasks() {
       $('#taskData').empty();
       for (var i = 0; i < response.length; i++) {
         var currentTask = response[i];
+        var $newTask = $('<tr>');
         $newTask.data('id', currentTask.id);
         var $newInput = $('<input type="checkbox" class = "checkbox" data-id="' + currentTask.id + '">');
         if (currentTask.complete){
