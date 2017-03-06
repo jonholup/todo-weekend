@@ -7,7 +7,7 @@ h1 {
 
 html, body {
     height: 100%;
-    font-family: 'Lekton';
+    font-family: 'Quicksand';
     font-size: 22px;
 }
 
@@ -64,5 +64,5 @@ button {
     color: black;
     border: 2px solid #3B99FC;
     font-size: 20px;
-    font-family: 'Lekton';
+    font-family: 'Quicksand';
 }
